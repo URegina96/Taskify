@@ -1,4 +1,4 @@
-package com.example.taskify.ui
+package com.example.taskify.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,22 +12,24 @@ import com.example.taskify.databinding.FragmentTaskListBinding
 
 class TaskListFragment : Fragment() {
 
-    private lateinit var binding: FragmentTaskListBinding
+    private lateinit var binding: FragmentTaskListBinding // Связываем элементы интерфейса
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentTaskListBinding.inflate(inflater, container, false)
+        binding = FragmentTaskListBinding.inflate(inflater, container, false) // Инфляция макета
 
+        // Установка слушателя на кнопку для добавления задачи
         binding.buttonAddTask.setOnClickListener {
             findNavController().navigate(R.id.action_taskListFragment_to_addTaskFragment)
         }
 
+        // Установка слушателя на кнопку для перехода к настройкам
         binding.buttonSettings.setOnClickListener {
             findNavController().navigate(R.id.action_taskListFragment_to_settingsFragment)
         }
 
-        return binding.root
+        return binding.root // Возвращаем корневое представление фрагмента
     }
 }

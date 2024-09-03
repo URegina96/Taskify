@@ -1,4 +1,4 @@
-package com.example.taskify.ui
+package com.example.taskify.ui.fragments
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -14,13 +14,13 @@ import com.example.taskify.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
 
-    private lateinit var binding: FragmentSettingsBinding
+    private lateinit var binding: FragmentSettingsBinding // Связываем элементы интерфейса
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSettingsBinding.inflate(inflater, container, false)
-        return binding.root
+        binding = FragmentSettingsBinding.inflate(inflater, container, false) // Инфляция макета
+        return binding.root // Возвращаем корневое представление фрагмента
     }
 }

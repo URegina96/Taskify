@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Taskify</string>
+    <string name="welcome_text">Welcome to Taskify!</string>
+    <string name="get_started">Get Started</string>
+    <string name="add_task">Add Task</string>
+    <string name="settings">Settings</string>
+    <string name="task_name">Task Name</string>
+    <string name="time">Time</string>
+    <string name="date">Date</string>
+    <string name="save_task">Save Task</string>
+    <string name="enable_notifications">Enable Notifications</string>
+    <string name="enter_task_name">Заголовок</string>
+    <string name="task_time">"Время "</string>
+    <string name="enter_task_time">"Время напоминания "</string>
+    <string name="task_date">Дата</string>
+    <string name="enter_task_date">"Дата напоминания "</string>
+    <string name="start">"Приступить "</string>
 </resources>

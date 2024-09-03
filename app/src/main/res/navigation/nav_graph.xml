@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.example.taskify.ui.WelcomeFragment"
+        android:name="com.example.taskify.ui.fragments.WelcomeFragment"
         tools:layout="@layout/fragment_welcome"
         android:label="Welcome">
         <action
@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/taskListFragment"
-        android:name="com.example.taskify.ui.TaskListFragment"
+        android:name="com.example.taskify.ui.fragments.TaskListFragment"
         tools:layout="@layout/fragment_task_list"
         android:label="Task List">
         <action
@@ -28,14 +28,18 @@
 
     <fragment
         android:id="@+id/addTaskFragment"
-        android:name="com.example.taskify.ui.AddTaskFragment"
+        android:name="com.example.taskify.ui.fragments.AddTaskFragment"
         tools:layout="@layout/fragment_add_task"
         android:label="Add Task"
-        android:theme="@style/Theme.MaterialComponents.Dialog.Alert" />
+        android:theme="@style/Theme.MaterialComponents.Dialog.Alert" >
+        <action
+            android:id="@+id/action_addTaskFragment_to_taskListFragment"
+            app:destination="@id/taskListFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.taskify.ui.SettingsFragment"
+        android:name="com.example.taskify.ui.fragments.SettingsFragment"
         tools:layout="@layout/fragment_settings"
         android:label="Settings"
         android:theme="@style/Theme.MaterialComponents.Dialog.Alert" />
