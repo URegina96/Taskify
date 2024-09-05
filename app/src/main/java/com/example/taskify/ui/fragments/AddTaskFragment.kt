@@ -112,7 +112,10 @@ class AddTaskFragment : Fragment() {
             set(Calendar.YEAR, dateParts[2])  // year
             set(Calendar.MONTH, dateParts[1] - 1)  // month - 1
             set(Calendar.DAY_OF_MONTH, dateParts[0])  // day
-
+            set(Calendar.HOUR_OF_DAY, timeParts[0])  // hour
+            set(Calendar.MINUTE, timeParts[1])  // minute
+            set(Calendar.SECOND, 0)  // seconds
+            set(Calendar.MILLISECOND, 0)  // milliseconds
         }
 
         val triggerTime = calendar.timeInMillis
