@@ -1,6 +1,7 @@
 package com.example.taskify.ui.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -10,9 +11,14 @@ import com.example.taskify.databinding.ItemTaskBinding
 
 // Адаптер для работы со списком задач
 class TaskAdapter : ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffCallback()) {
+    private var onClickDeleteListener: ((Task) -> Unit )? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        val binding = ItemTaskBinding.inflate(LayoutInflater.from(parent.context), parent, false) // Инфляция макета элемента
+        val binding = ItemTaskBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        ) // Инфляция макета элемента
         return TaskViewHolder(binding) // Возвращаем ViewHolder
     }
 
@@ -21,10 +27,22 @@ class TaskAdapter : ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffCallba
     }
 
     // ViewHolder для элемента задачи
-    class TaskViewHolder(private val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TaskViewHolder(private val binding: ItemTaskBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+
         fun bind(task: Task) {
-            binding.taskName.text = task.name // Устанавливаем имя задачи в соответствующее поле
+            binding.taskTitle.text = task.name // Устанавливаем имя задачи в соответствующее поле
+            binding.taskDateTime.text =
+                "${task.date} ${task.time}" // Устанавливаем дату и время задачи
+            binding.deleteButton.setOnClickListener {// удаление
+                onClickDeleteListener?.invoke(task)
+            }
         }
+    }
+
+    fun onClickDelete(listener: (Task) -> Unit) {
+        onClickDeleteListener = listener
     }
 
     // Класс для оптимизации списка задач

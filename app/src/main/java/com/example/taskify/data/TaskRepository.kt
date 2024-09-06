@@ -1,6 +1,8 @@
 package com.example.taskify.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import com.example.taskify.Task
 import com.example.taskify.db.TaskDao
@@ -13,13 +15,13 @@ class TaskRepository @Inject constructor(private val taskDao: TaskDao) {
 
     // Получаем список всех задач из DAO и преобразуем в LiveData
     fun getAllTasks(): LiveData<List<Task>> {
-        return taskDao.getAllTasks()
-            .map { tasks -> tasks ?: emptyList() } // Обрабатываем данные, чтобы избежать null
-            .asLiveData() // Преобразуем Flow в LiveData
+        val flow = taskDao.getAllTasks()
+        return flow?.map { tasks -> tasks ?: emptyList() }?.asLiveData() ?: MutableLiveData(emptyList())
     }
 
     suspend fun insertTask(task: Task) {
-        taskDao.insertTask(task) // Вставляем задачу в DAO
+        taskDao.insertTask(task)
+        Log.d("TaskRepository", "Task inserted: $task")
     }
 
     suspend fun deleteTask(task: Task) {

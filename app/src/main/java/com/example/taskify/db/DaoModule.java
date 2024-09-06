@@ -1,5 +1,7 @@
 package com.example.taskify.db;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -12,6 +14,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
+import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.components.SingletonComponent;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
@@ -22,26 +25,8 @@ public class DaoModule {
 
     @Provides // Обозначает метод для предоставления зависимости
     @Singleton // Обозначаем, что этот объект будет синглтоном
-    public TaskDao provideTaskDao() {
+    public TaskDao provideTaskDao(@ApplicationContext Context appContext) {
         // Возвращаем экземпляр TaskDao, например, через Room database или другой способ
-        return new TaskDao() {
-            @Nullable
-            @Override
-            public Object deleteTask(@NonNull Task task, @NonNull Continuation<? super Unit> $completion) {
-                return null; // Заглушка для удаления задачи
-            }
-
-            @Nullable
-            @Override
-            public Object insertTask(@NonNull Task task, @NonNull Continuation<? super Unit> $completion) {
-                return null; // Заглушка для вставки задачи
-            }
-
-            @NonNull
-            @Override
-            public Flow<List<Task>> getAllTasks() {
-                return null; // Заглушка для получения всех задач
-            }
-        };
+        return TaskDatabase.Companion.getInstance(appContext).taskDao();
     }
 }

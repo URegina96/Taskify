@@ -14,8 +14,8 @@ interface TaskDao {
     fun getAllTasks(): Flow<List<Task>> // Возвращает поток задач
 
     @Insert(onConflict = OnConflictStrategy.REPLACE) // Вставка задачи с заменой при конфликте
-    suspend fun insertTask(task: Task) // Вставляет задачу
+    fun insertTask(task: Task) // Вставляет задачу
 
     @Delete // Удаление задачи
-    suspend fun deleteTask(task: Task) // Удаляет задачу
+    fun deleteTask(task: Task) // Удаляет задачу
 }
