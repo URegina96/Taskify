@@ -18,7 +18,7 @@ import androidx.work.WorkManager
 import androidx.work.workDataOf
 import com.example.taskify.Hilt.TaskViewModel
 import com.example.taskify.R
-import com.example.taskify.TaskReminderWorker
+import com.example.taskify.worker.TaskReminderWorker
 import java.util.*
 import java.util.concurrent.TimeUnit
 

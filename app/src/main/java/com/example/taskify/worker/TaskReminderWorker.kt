@@ -8,8 +8,13 @@ import androidx.core.app.NotificationCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.taskify.R
+import javax.inject.Inject
+import dagger.hilt.android.qualifiers.ApplicationContext
 
-class TaskReminderWorker(private val context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
+class TaskReminderWorker @Inject constructor(
+    @ApplicationContext private val context: Context,
+    workerParams: WorkerParameters
+) : Worker(context, workerParams) {
 
     companion object {
         const val CHANNEL_ID = "task_reminder_channel"
@@ -19,10 +24,8 @@ class TaskReminderWorker(private val context: Context, workerParams: WorkerParam
     override fun doWork(): Result {
         val taskName = inputData.getString("task_name") ?: return Result.failure()
 
-        // Создание канала уведомлений для Android 8.0 и выше
         createNotificationChannel()
 
-        // Здесь вы отправляете уведомление пользователю
         sendNotification(taskName)
 
         return Result.success()
@@ -31,16 +34,14 @@ class TaskReminderWorker(private val context: Context, workerParams: WorkerParam
     private fun sendNotification(taskName: String) {
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        // Создаем уведомление
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.notification_icon) // ваша иконка уведомления
-            .setContentTitle("Напоминание")
-            .setContentText("У вас есть задача: $taskName")
+            .setSmallIcon(R.drawable.notification_icon)
+            .setContentTitle("Reminder")
+            .setContentText("You have a task: $taskName")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setAutoCancel(true) // Удалить уведомление при нажатии
+            .setAutoCancel(true)
             .build()
 
-        // Отправляем уведомление
         notificationManager.notify(NOTIFICATION_ID, notification)
     }
 
@@ -52,7 +53,6 @@ class TaskReminderWorker(private val context: Context, workerParams: WorkerParam
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText
             }
-            // Регистрация канала
             val notificationManager: NotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }

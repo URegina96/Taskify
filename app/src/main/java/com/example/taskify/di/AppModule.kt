@@ -2,7 +2,7 @@ package com.example.taskify.di
 
 import android.content.Context
 import androidx.work.WorkerParameters
-import com.example.taskify.TaskReminderWorker
+import com.example.taskify.worker.TaskReminderWorker
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
