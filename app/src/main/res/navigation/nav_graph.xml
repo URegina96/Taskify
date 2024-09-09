@@ -21,9 +21,6 @@
         <action
             android:id="@+id/action_taskListFragment_to_addTaskFragment"
             app:destination="@id/addTaskFragment" />
-        <action
-            android:id="@+id/action_taskListFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
     </fragment>
 
     <fragment
@@ -37,10 +34,4 @@
             app:destination="@id/taskListFragment" />
     </fragment>
 
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.taskify.ui.fragments.SettingsFragment"
-        tools:layout="@layout/fragment_settings"
-        android:label="Settings"
-        android:theme="@style/Theme.MaterialComponents.Dialog.Alert" />
 </navigation>

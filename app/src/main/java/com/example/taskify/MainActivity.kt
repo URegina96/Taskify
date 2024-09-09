@@ -1,4 +1,4 @@
-package com.example.taskify.ui
+package com.example.taskify
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

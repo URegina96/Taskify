@@ -49,11 +49,6 @@ class TaskListFragment : Fragment() {
             findNavController().navigate(R.id.action_taskListFragment_to_addTaskFragment)
         }
 
-        // Установка слушателя на кнопку для перехода к настройкам
-        binding.buttonSettings.setOnClickListener {
-            findNavController().navigate(R.id.action_taskListFragment_to_settingsFragment)
-        }
-
         return binding.root // Возвращаем корневое представление фрагмента
     }
 }
